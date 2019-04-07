@@ -9,8 +9,28 @@
   <body>
     <div class="nav-bar"></div>
     <div id="app">
-      <h1>{{product}}</h1>
-      <p>{{description}}</p>
+      <div class="product">
+        <div class="product-image">
+          <img v-bind:src="image" />
+        </div>
+        <div class="product-info">
+          <h1>{{product}}</h1>
+          <p>{{description}}</p>
+          <p v-if="inStock">In Stock</p>
+          <p v-else>Out of Stock</p>
+          <p v-if="onSale">On Sale</p>
+
+          <ul>
+            <li v-for="detail in details">{{detail}}</li>
+          </ul>
+
+          <ul>
+            <li v-for="variant in variants" :key="variant.variantId">
+              {{variant.variantColor}}
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
