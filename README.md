@@ -1,2 +1,0 @@
-# VueCart
-Created with CodeSandbox
