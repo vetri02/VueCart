@@ -23,6 +23,11 @@ img {
   box-shadow: 0px 0.5px 1px #d8d8d8;
 }
 
+.onSale {
+  font-size: 12px;
+  color: rgb(248, 88, 88);
+}
+
 .product-image {
   width: 80%;
 }

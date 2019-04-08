@@ -17,11 +17,13 @@
           <div class="cart">
             Cart {{cart}}
           </div>
-          <h1>{{product}}</h1>
+          <h1>
+            {{title}}
+            <span v-if="onSale" class="onSale">On Sale</span>
+          </h1>
           <p>{{description}}</p>
           <p v-if="inStock">In Stock</p>
           <p v-else :style="{textDecoration: 'line-through'}">Out of Stock</p>
-          <p v-if="onSale && inStock">On Sale</p>
 
           <ul>
             <li v-for="detail in details">{{detail}}</li>
@@ -29,10 +31,10 @@
 
           <div
             class="color-box"
-            v-for="variant in variants"
+            v-for="(variant, index) in variants"
             :key="variant.variantId"
             :style="{backgroundColor: variant.variantColor}"
-            @mouseover="updateImage(variant.variantImage)"
+            @mouseover="updateProduct(index)"
           ></div>
 
           <button
