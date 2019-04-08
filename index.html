@@ -14,27 +14,34 @@
           <img v-bind:src="image" />
         </div>
         <div class="product-info">
+          <div class="cart">
+            Cart {{cart}}
+          </div>
           <h1>{{product}}</h1>
           <p>{{description}}</p>
           <p v-if="inStock">In Stock</p>
-          <p v-else>Out of Stock</p>
-          <p v-if="onSale">On Sale</p>
+          <p v-else :style="{textDecoration: 'line-through'}">Out of Stock</p>
+          <p v-if="onSale && inStock">On Sale</p>
 
           <ul>
             <li v-for="detail in details">{{detail}}</li>
           </ul>
 
-          <ul>
-            <li v-for="variant in variants" :key="variant.variantId">
-              <p @mouseover="updateImage(variant.variantImage)">
-                {{variant.variantColor}}
-              </p>
-            </li>
-          </ul>
-          <div class="cart">
-            Cart {{cart}}
-          </div>
-          <button v-on:click="addToCart">Add to cart</button>
+          <div
+            class="color-box"
+            v-for="variant in variants"
+            :key="variant.variantId"
+            :style="{backgroundColor: variant.variantColor}"
+            @mouseover="updateImage(variant.variantImage)"
+          ></div>
+
+          <button
+            v-on:click="addToCart"
+            :disabled="!inStock"
+            :class="{disabledButton: !inStock}"
+          >
+            Add to cart
+          </button>
           <button v-on:click="removeFromCart">Remove from cart</button>
         </div>
       </div>
