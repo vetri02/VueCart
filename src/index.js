@@ -11,12 +11,31 @@ var app = new Vue({
     variants: [
       {
         variantId: 2234,
-        variantColor: "green"
+        variantColor: "green",
+        variantImage:
+          "https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg"
       },
       {
         variantId: 2235,
-        variantColor: "blue"
+        variantColor: "blue",
+        variantImage:
+          "https://www.vuemastery.com/images/challenges/vmSocks-blue-onWhite.jpg"
       }
-    ]
+    ],
+    cart: 0
+  },
+  methods: {
+    addToCart() {
+      this.cart += 1;
+    },
+    updateImage(image) {
+      this.image = image;
+    },
+    removeFromCart() {
+      this.cart = this.cart - 1;
+      if (this.cart <= 0) {
+        this.cart = 0;
+      }
+    }
   }
 });
